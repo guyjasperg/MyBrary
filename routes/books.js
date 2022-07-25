@@ -6,6 +6,7 @@ const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
 
 // All Books Route
 router.get('/', async (req, res) => {
+  console.log('Get All Books')
   let query = Book.find()
   if (req.query.title != null && req.query.title != '') {
     query = query.regex('title', new RegExp(req.query.title, 'i'))
@@ -17,7 +18,20 @@ router.get('/', async (req, res) => {
     query = query.gte('publishDate', req.query.publishedAfter)
   }
   try {
-    const books = await query.exec()
+    const books = await query.populate('author').exec()
+    //populate Authors
+    // if(books!=null)
+    // {
+    //   console.log('getting authors')
+    //   await Book.populate(books, {"path" : "Author"}, function (err, output) {
+    //       if(err)
+    //       {
+    //         console.error(err)
+    //       }
+    //     }
+    //   )
+      
+    // }
     res.render('books/index', {
       books: books,
       searchOptions: req.query

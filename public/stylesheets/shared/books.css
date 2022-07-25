@@ -16,7 +16,9 @@
 .book-grid {
   display: grid;
   justify-content: center;
-  grid-gap: 2rem;
+  /*grid-gap: 2rem;*/
+  row-gap: .5rem;
+  column-gap: 2rem;
   grid-template-columns: repeat(auto-fill, var(--book-cover-width));
 }
 
@@ -32,6 +34,21 @@
   font-size: 1.2rem;
   font-weight: 500;
   align-self: flex-start;
+}
+
+.book-details-label-grid-title {
+  font-size: .8rem;
+  font-weight: 400;
+  padding: 0;
+  text-align: center;
+}
+
+.book-details-label-grid-author {
+  font-size: .7rem;
+  font-weight: 300;
+  padding-top: .2em;
+  padding-bottom: .2em;
+  text-align: center;
 }
 
 .book-details-grid {
